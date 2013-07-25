@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Low Jia Sheng",
+    "hp": "532652465",
+    "email": "test@mailcatch.com",
+    "religion": ["christian", "buddhist"]
+  },
+  {
+    "name": "Tan Chun Heng",
+    "hp": "5234525",
+    "email": "tch@mailcatch.com",
+    "religion": ["christian", "buddhist", "atheist"]
+  },
+  {
+    "name": "Amina Noor Aishah",
+    "hp": "23423526",
+    "email": "amina@mailcatch.com",
+    "religion": ["buddhist", "muslim"]
+  }
+]

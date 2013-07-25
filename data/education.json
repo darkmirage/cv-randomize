@@ -1,0 +1,14 @@
+[
+  {
+    "level": "Degree ",
+    "school": "_degree.school_"
+  },
+  {
+    "level": "A Level",
+    "school": "_alevel.school_"
+  },
+  {
+    "level": "O Level",
+    "school": "_olevel.school_"
+  }
+]
