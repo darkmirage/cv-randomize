@@ -7,7 +7,7 @@
 Raven Jiang
 raven@cs.stanford.edu
 
-==============================================================================
+
 Windows Instruction
 ==============================================================================
 
@@ -18,7 +18,7 @@ Windows Instruction
 5.  Type "cd C:\cv" (assuming step 3) and press Enter
 6.  Type "C:\Python27\python cvrand.py template\cv1.docx 10" and press Enter
 
-==============================================================================
+
 Mac and Linux Instructions
 ==============================================================================
 
@@ -26,7 +26,7 @@ Python generally come preinstalled, so try opening Terminal and going to the
 /cv folder and run "python cvrand.py template/cv1.docx". You may need to
 install the lxml Python module using pip.
 
-==============================================================================
+
 Command Parameters Explained
 ==============================================================================
 
@@ -46,7 +46,7 @@ template\cv1.docx
   This is the number of CVs to generate using the specified template. Defaults
   to 5 if not specified.
 
-==============================================================================
+
 Templating System
 ==============================================================================
 
@@ -54,9 +54,17 @@ The script looks for tags enclosed by [] in the template document and replaces
 them with random values to produce a CV. The source data for the random
 generator are stored as JSON files in the /data folder.
 
-###
-# Simple
-###
+
+Filename
+------------------------------------------------------------------------------
+
+Any tags enclosed by [] in the name of the template are replaced by the
+corresponding value used in the file. If the tag is found in the template name
+but not in the template body, it will not be randomized.
+
+
+Simple
+------------------------------------------------------------------------------
 
 In the simplest case, a random tag representing a discrete random value with
 no dependencies is defined through the following:
@@ -66,9 +74,9 @@ Corresponding JSON:   tag_name.json
 Content of JSON:
 ["random value 1", "random value 2", "random value 3"]
 
-###
-# Group Dependency
-###
+
+Group Dependency
+------------------------------------------------------------------------------
 
 A random tag can belong to a group such that all tags belonging to the same
 group will be have dependent values. (e.g. for a given person name, we want to
@@ -82,9 +90,9 @@ Content of JSON:
   { "name": "Mary", "email": "mary@mailcatch.com" }
 ]
 
-###
-# Internal Subfield Randomization
-###
+
+Internal Subfield Randomization
+------------------------------------------------------------------------------
 
 The above definitions ensure that whenever "John" is used for the value of
 [person.name], "john@mailcatch.com" must be the value for [person.email]
@@ -107,9 +115,9 @@ email addresses belonging to him will be used for [person.email]. Refer to
 person.json for an example of this. Note that whitespace and line breaks in
 JSON files are mostly for readability and have no syntactic meaning.
 
-###
-# External Subfield Randomization
-###
+
+External Subfield Randomization
+------------------------------------------------------------------------------
 
 Sometimes the list of random values for a subfield is too long to include in
 every single group. Instead of defining an array in the JSON file of the

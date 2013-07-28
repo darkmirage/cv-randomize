@@ -11,6 +11,9 @@ def rInt(a, b):
   return random.randint(a, b)
 
 
+_tag_re = re.compile(r'\[([^\]]+)\]')
+
+
 def writeDocx(doc, filename):
   coreprops = coreproperties(title='CV', subject='', creator='',
                              keywords=[])
@@ -30,8 +33,7 @@ def loadTemplate(tmpl_path):
 
 def findTargets(doc):
   text = '\n'.join(getdocumenttext(doc))
-  tag_re = re.compile(r'\[(.+)\]')
-  targets = tag_re.findall(text)
+  targets = _tag_re.findall(text)
   targets.sort()
   return targets
 
@@ -50,6 +52,7 @@ if __name__ == '__main__':
 
   dir_path = os.path.dirname(os.path.realpath(__file__))
   data_path = os.path.join(dir_path, 'data')
+  tmpl_name = os.path.split(tmpl_path)[1]
   template = loadTemplate(tmpl_path)
   targets = findTargets(template)
 
@@ -67,24 +70,35 @@ if __name__ == '__main__':
       continue
     try:
       f = open(os.path.join(data_path, _t[0] + '.json'), 'r')
+      # Lazy reading
       functions[_t[0]] = lambda l=json.loads(f.read()): l
     except:
       pass
 
   print "Generating CVs."
 
+  # Tracks external files not defined in functions
   memo = dict()
+
   list_re = re.compile(r'^_(.+)_$')
   for i in xrange(0, n):
     doc = deepcopy(template)
+
+    # Ensures that linked variables are selected together
     dependence = {}
+
+    # Results
+    results = {}
+
     for t in targets:
+      print t
       value = 'NOT FOUND'
 
       _t = t.split('.')
       if _t[0] not in functions:
         continue
 
+      # Evaluate the function to get either a random result or a list to pick from
       value = functions[_t[0]]()
       if type(value) is list:
         if _t[0] in dependence:
@@ -93,11 +107,13 @@ if __name__ == '__main__':
           r = rInt(0, len(value)-1)
           dependence[_t[0]] = r
 
+        # If the field is a subfield, retrieve the subfield
         if len(_t) > 1:
           value = value[r][_t[1]]
         else:
           value = value[r]
 
+        # If the value is a list, or if it refers to an external file, randomize again
         if type(value) is list:
           value = value[rInt(0, len(value)-1)]
 
@@ -116,10 +132,16 @@ if __name__ == '__main__':
           l = memo[m.group(0)]
           value = l[rInt(0, len(l)-1)]
 
-      doc = advReplace(doc, ur'(\[' + t + r'\])', value, 5)
+      doc = advReplace(doc, r'(\[' + t + r'\])', value, 5)
+      results[t] = value
 
-    filename = os.path.join('output', 'cv_%04d.docx' % i)
+    filename = '%04d_%s' % (i, tmpl_name)
+    tags = _tag_re.findall(filename)
+    for t in tags:
+      if t in results:
+        filename = re.sub(r'(\[' + t + r'\])', str(results[t]), filename)
     print filename
+    filename = os.path.join('output', filename)
     writeDocx(doc, filename)
 
   print "Done."

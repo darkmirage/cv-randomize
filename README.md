@@ -58,6 +58,13 @@ The script looks for tags enclosed by `[]` in the template document and replaces
 them with random values to produce a CV. The source data for the random
 generator are stored as JSON files in the `data` folder.
 
+Filename
+------------------------------------------------------------------------------
+Any tags enclosed by `[]` in the name of the template are replaced by the
+corresponding value used in the file. If the tag is found in the template name
+but not in the template body, it will not be randomized.
+
+
 Simple
 ------------------------------------------------------------------------------
 
