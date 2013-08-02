@@ -3,6 +3,7 @@ import sys
 import os.path
 import random
 import json
+import string
 from copy import deepcopy
 from docx import *
 
@@ -36,6 +37,10 @@ def findTargets(doc):
   targets = _tag_re.findall(text)
   targets.sort()
   return targets
+
+def sanitizeFilename(filename):
+  valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+  return ''.join(c for c in filename if c in valid_chars)
 
 
 def getFunction(functions, t):
@@ -91,7 +96,6 @@ if __name__ == '__main__':
     results = {}
 
     for t in targets:
-      print t
       value = 'NOT FOUND'
 
       _t = t.split('.')
@@ -140,8 +144,8 @@ if __name__ == '__main__':
     for t in tags:
       if t in results:
         filename = re.sub(r'(\[' + t + r'\])', str(results[t]), filename)
-    print filename
-    filename = os.path.join('output', filename)
+    filename = os.path.join('output', sanitizeFilename(filename))
     writeDocx(doc, filename)
+    print filename
 
   print "Done."

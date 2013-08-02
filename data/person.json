@@ -1,20 +1,44 @@
 [
   {
     "name": "Low Jia Sheng",
-    "hp": "532652465",
-    "email": "test@mailcatch.com",
-    "religion": ["christian", "buddhist"]
+    "hp": "91192842",
+    "email": "low.jsheng@gmail.com",
+    "religion": ["Christian", "Buddhist", "Taoist", "Not religious"],
+    "mt": "Mandarin"
+  },
+   {
+    "name": "Valerie Teo Shi Hui",
+    "hp": "93548656",
+    "email": "valerie.teoshihui@gmail.com",
+    "religion": ["Christian", "Buddhist", "Taoist", "Not religious"],
+     "mt": "Mandarin"
   },
   {
-    "name": "Tan Chun Heng",
-    "hp": "5234525",
-    "email": "tch@mailcatch.com",
-    "religion": ["christian", "buddhist", "atheist"]
+    "name": "Aarav Kumar s/o Ramasamy",
+    "hp": "84332879",
+    "email": "ramukvaraa@gmail.com",
+    "religion": ["Hindu", "Muslim", "Christian", "Not religious"],
+     "mt": "Tamil"
   },
   {
-    "name": "Amina Noor Aishah",
-    "hp": "23423526",
-    "email": "amina@mailcatch.com",
-    "religion": ["buddhist", "muslim"]
+    "name": "Navya Chattopadhyay",
+    "hp": "84313404",
+    "email": "navyachatt@gmail.com",
+    "religion": ["Hindu", "Muslim", "Christian", "Not religious"],
+     "mt": "Tamil"
+  },
+  {
+    "name": "Mohamad Nasir Zakaria",
+    "hp": "86525084",
+    "email": "zakarisan10@gmail.com",
+    "religion": ["Muslim", "Not religious"],
+     "mt": "Malay"
+  },
+  {
+    "name": "Nur Shakila binte Mohd Taib",
+    "hp": "86567499",
+    "email": "shakila8891@gmail.com",
+    "religion": ["Muslim", "Not religious"],
+     "mt": "Malay"
   }
 ]

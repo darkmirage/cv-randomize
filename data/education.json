@@ -1,14 +1,16 @@
 [
   {
-    "level": "Degree ",
-    "school": "_degree.school_"
-  },
+    "level": "Degree",
+    "school": "_degree.school_",
+    "honors": ["First Class", "Second Class (Upper)", "Second Class (Lower)"]
+    },
   {
     "level": "A Level",
-    "school": "_alevel.school_"
+    "school": "_alevel.school_",
   },
   {
     "level": "O Level",
-    "school": "_olevel.school_"
+    "school": "_olevel.school_",
+    "honors": "_olevel.honors_"
   }
 ]
