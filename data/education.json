@@ -3,10 +3,10 @@
     "level": "Degree",
     "school": "_degree.school_",
     "honors": ["First Class", "Second Class (Upper)", "Second Class (Lower)"]
-    },
+  },
   {
     "level": "A Level",
-    "school": "_alevel.school_",
+    "school": "_alevel.school_"
   },
   {
     "level": "O Level",

@@ -65,9 +65,12 @@ if __name__ == '__main__':
     f = open(os.path.join(data_path, 'functions.json'), 'r')
     functions = json.loads(f.read())
     for t in functions:
-      functions[t] = lambda s=functions[t]: eval(s)
+      statement = functions[t]
+      print "Processing function: " + statement
+      statement = re.sub(r'_(.+)_', r'float(results["\1"])', statement)
+      functions[t] = lambda s=statement: int(eval(s))
   except:
-    pass
+    print "Error parsing functions.json"
 
   for t in targets:
     _t = t.split('.')
@@ -100,6 +103,7 @@ if __name__ == '__main__':
 
       _t = t.split('.')
       if _t[0] not in functions:
+        print "[%s] ERROR: Expected %s.json but failed to load file." % (t, _t[0])
         continue
 
       # Evaluate the function to get either a random result or a list to pick from
