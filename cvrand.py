@@ -68,6 +68,7 @@ if __name__ == '__main__':
       statement = functions[t]
       print "Processing function: " + statement
       statement = re.sub(r'_(.+)_', r'float(results["\1"])', statement)
+      print statement
       functions[t] = lambda s=statement: int(eval(s))
   except:
     print "Error parsing functions.json"
